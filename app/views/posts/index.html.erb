@@ -1,1 +1,13 @@
-<h1>Posts</h1>
+<div class ="container-fluid">
+  <h3>Posts</h3>
+  <% unless @posts.blank? %>
+    <%@posts.each do |post| %>
+      <div class ="post-title">
+        Title:<%=post.title%>
+      </div>
+      <div class = "post-content">
+        <p><%= post.content %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
