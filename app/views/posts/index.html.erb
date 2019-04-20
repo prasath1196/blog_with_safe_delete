@@ -2,11 +2,27 @@
   <h3>Posts</h3>
   <% unless @posts.blank? %>
     <%@posts.each do |post| %>
+      <div class ="post-container">
       <div class ="post-title">
         Title:<%=post.title%>
       </div>
       <div class = "post-content">
         <p><%= post.content %></p>
+        <%=link_to "destroy", trash_post_path(post.id) %>
+        <%=link_to "delete", post_path(post.id),method: :delete %>
+      </div>
+      </div>
+      Comments:
+      <hr>
+      <div class = "comments-container">
+        <%post.active_comments.each do |comment| %>
+        <div class ="comment-content">
+          <p><%= comment.content %></p>
+          <%= link_to "destroy", trash_comment_path(comment.id) %>
+          <%=link_to "delete", comment_path(comment.id),method: :delete %>
+          <hr>
+        </div>
+        <%end %>
       </div>
     <% end %>
   <% end %>

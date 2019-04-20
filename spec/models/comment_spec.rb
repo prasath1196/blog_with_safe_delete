@@ -6,4 +6,6 @@ RSpec.describe Comment, type: :model do
 
   # Validation testing
   it {should validate_presence_of(:content)}
+
+
 end
