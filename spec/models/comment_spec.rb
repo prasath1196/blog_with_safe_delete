@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # Association testing
+  it {should belong_to(:post)}
+
+  # Validation testing
+  it {should validate_presence_of(:content)}
 end
