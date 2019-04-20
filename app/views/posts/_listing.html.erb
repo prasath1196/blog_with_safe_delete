@@ -1,23 +1,29 @@
 <% unless posts.blank? %>
   <%posts.each do |post| %>
     <div class ="post-container">
-      <div class ="post-title">
-        Title:<%=post.title%>
+      <div class ="post-title col-md-6">
+        <p><b>Title:</b><%=post.title%></p>
       </div>
-      <div class = "post-content">
-        <p><%= post.content %></p>
-        <%=link_to "destroy", trash_post_path(post.id) %>
-        <%=link_to "delete", post_path(post.id),method: :delete %>
-        <%=link_to "Edit", edit_post_path(post.id),remote: true %>
+      <div class = "post-content col-md-8">
+        <p><b>Content:</b></b><%= post.content %></p>
+      </div>
+      <div class ="action-links col-md-8">
+        <%=link_to "destroy_post", trash_post_path(post.id),class:"link-item" %>
+        <%=link_to "delete_post", post_path(post.id),method: :delete,class:"link-item" %>
+        <%=link_to "edit_post", edit_post_path(post.id),remote: true,class:"link-item" %>
+      </div>
+      <div class ="comments-section">
+        <div class ="section-header col-md-6"><b>Comments</b></div>
+        <div class ="comment-form-section col-md-8">
+          <%= render 'comments/comment_form', comment:comment, post_id:post.id %>
+          <hr>
+        </div>
+        <div class = "comments-container" id="comments-of-<%=post.id%>">
+          <div class ="comment-listing-area col-md-8">
+            <%= render 'comments/comment_listing', post:post %>
+          </div>
+        </div>
       </div>
     </div>
-    Comments:
-    <%= render 'comments/comment_form', comment:comment, post_id:post.id %>
-    <hr>
-    <div class = "comments-container" id="comments-of-<%=post.id%>">
-      <div class ="comment-listing-area">
-        <%= render 'comments/comment_listing', post:post %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+    <% end %>
+    <% end %>
