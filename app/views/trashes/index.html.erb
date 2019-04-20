@@ -1,0 +1,23 @@
+<div class ="container">
+     <h3>Posts</h3>
+-    <div id="posts">
+      <% unless @posts.blank?%>
+        <%@posts.each do |post| %>
+          <div class ="post-title">
+            <%=post.title %><%=link_to "Restore",restore_post_path(post.id)%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <h3>Comments</h3>
+    <div id="comments">
+      <% unless @comments.blank? %>
+        <%@comments.each do |comment| %>
+          <div class ="comment-content">
+            <p><%= comment.content %></p>
+            Post Title:<%=comment.post.title%><%=link_to "Restore",restore_comment_path(comment.id) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
