@@ -1,0 +1,12 @@
+<%= form_for post, remote: true do |f|%>
+  <div class ="form-group">
+    <label class="label">Title</label>
+    <%=f.text_field :title,class:"form-control" %>
+  </div>
+  <div class ="form-group">
+    <label class ="label">Content</label>
+    <%= f.text_area :content,class:"form-control" %>
+  </div>
+  <%= f.hidden_field :thrashed,value:false %>
+  <%=f.submit "Submit",class:"btn btn-primary" %>
+<%end %>

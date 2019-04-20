@@ -1,0 +1,7 @@
+$('#comments-of-<%=@comment.post.id%>').html('<%=escape_javascript render 'comment_listing', post:@comment.post %>')
+<%if @modal_action == "close" %>
+   $('#comment-modal').modal('hide');
+<%else %>
+  $('#comment-form-area').html('<%=escape_javascript render 'comment_form',comment:@comment,post_id:@comment.post.id %>')
+  $('#comment-modal').modal('show');
+<%end %>

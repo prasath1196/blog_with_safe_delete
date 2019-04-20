@@ -1,0 +1,9 @@
+<%post.active_comments.each do |comment| %>
+  <div class ="comment-content">
+    <p><%= comment.content %></p>
+    <%= link_to "destroy", trash_comment_path(comment.id) %>
+    <%=link_to "delete", comment_path(comment.id),method: :delete %>
+    <%=link_to "edit", edit_comment_path(comment.id), remote: true %>
+    <hr>
+  </div>
+<%end %>

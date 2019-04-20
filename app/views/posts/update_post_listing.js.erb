@@ -1,0 +1,8 @@
+
+  $('#post-listing-section').html('<%=escape_javascript render 'posts/listing',posts:@posts %>')
+  <%if @modal_action == "close" %>
+    $('#postModal').modal('hide');
+  <% else %>
+    $('#postFormArea').html('<%=escape_javascript render 'posts/post_form', post:@post %>')
+   $('#postModal').modal('show');
+  <% end %>

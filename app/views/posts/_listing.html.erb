@@ -1,0 +1,23 @@
+<% unless posts.blank? %>
+  <%posts.each do |post| %>
+    <div class ="post-container">
+      <div class ="post-title">
+        Title:<%=post.title%>
+      </div>
+      <div class = "post-content">
+        <p><%= post.content %></p>
+        <%=link_to "destroy", trash_post_path(post.id) %>
+        <%=link_to "delete", post_path(post.id),method: :delete %>
+        <%=link_to "Edit", edit_post_path(post.id),remote: true %>
+      </div>
+    </div>
+    Comments:
+    <%= render 'comments/comment_form', comment:comment, post_id:post.id %>
+    <hr>
+    <div class = "comments-container" id="comments-of-<%=post.id%>">
+      <div class ="comment-listing-area">
+        <%= render 'comments/comment_listing', post:post %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

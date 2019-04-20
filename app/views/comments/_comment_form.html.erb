@@ -1,0 +1,9 @@
+<%= form_for comment, remote:true do |f| %>
+  <div class ="form-group">
+    <label class ="label">Add Comment</label>
+    <%=f.text_area :content,class:"form-control" %>
+  </div>
+  <%= f.hidden_field :thrashed,value:false %>
+  <%= f.hidden_field :post_id,value:post_id %>
+  <%=f.submit "Save",class:"btn btn-primary" %>
+<% end %>
