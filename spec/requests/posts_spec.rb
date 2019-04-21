@@ -38,12 +38,12 @@ RSpec.describe "Posts", type: :request do
 
   # GET '/posts/move_to_trash/:id'
   describe 'GET /posts/move_to_trash/:id to trash' do
-    before {get '/posts/move_to_trash/'+post_list.first.id.to_s}
+    before {get '/posts/move_to_trash/'+post_list.first.id.to_s, xhr:true}
     it 'should render index.html.erb' do
-      expect(response).to redirect_to('/posts')
+      expect(response).to render_template(:update_post_listing)
     end
     it 'should return 200 as response code' do
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(200)
     end
   end
 

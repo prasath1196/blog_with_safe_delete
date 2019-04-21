@@ -1,6 +1,5 @@
 
   $('#post-listing-section').html('<%=escape_javascript render 'posts/listing',posts:@posts %>')
-  <%=puts @posts %>
   <%if @modal_action == "close" %>
     $('#postModal').modal('hide');
   <% else %>
