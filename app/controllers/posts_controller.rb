@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
 
   before_action :fetch_post, only:[:move_to_trash,:destroy,:edit,:update]
-  before_action :fetch_posts, only:[:index,:new,:edit,:update,:create]
+  before_action :fetch_posts, only:[:index,:new,:edit]
+  after_action :fetch_posts, only: [:update]
+  before_action :new_comment
 
   def index
   end
@@ -22,6 +24,7 @@ class PostsController < ApplicationController
   def create
     Post.create!(post_params)
     @modal_action = "close"
+    @posts = Post.where(thrashed:false)
     respond_to do |format|
       format.js {render 'update_post_listing'}
     end
@@ -30,6 +33,7 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
     @modal_action ="close"
+    @posts = Post.where(thrashed:false)
     respond_to do |format|
       format.js {render 'update_post_listing'}
     end
@@ -55,7 +59,10 @@ class PostsController < ApplicationController
   end
 
   def fetch_posts
-    @comment = Comment.new
     @posts = Post.where(thrashed:false)
+  end
+
+  def new_comment
+    @comment = Comment.new
   end
 end

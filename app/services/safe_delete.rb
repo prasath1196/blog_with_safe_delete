@@ -7,9 +7,7 @@ class SafeDelete
     case fetch_class_name
       when "Post"
         trash_object.update(thrashed:true)
-        trash_object.comments.each do |comment|
-          comment.update!(thrashed:true)
-        end
+        trash_object.comments.update_all(thrashed:true)
       when "Comment"
         trash_object.update(thrashed:true)
     end

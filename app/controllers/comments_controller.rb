@@ -4,14 +4,17 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create!(comment_params)
+    @modal_action = "close"
     respond_to do |format|
       format.js {render 'update_comment_listing'}
     end
   end
+
   def move_to_trash
     SafeDelete.new(@comment).call
     redirect_to posts_path
   end
+
   def destroy
     @comment.destroy
     redirect_to posts_path
@@ -31,7 +34,9 @@ class CommentsController < ApplicationController
       format.js {render 'update_comment_listing'}
     end
   end
+
   private
+
   def fetch_comment
     @comment =  Comment.find(params[:id])
   end

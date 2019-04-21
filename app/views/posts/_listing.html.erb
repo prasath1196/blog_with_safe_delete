@@ -15,7 +15,7 @@
       <div class ="comments-section">
         <div class ="section-header col-md-6"><b>Comments</b></div>
         <div class ="comment-form-section col-md-8">
-          <%= render 'comments/comment_form', comment:comment, post_id:post.id %>
+          <%= render 'comments/comment_form', comment:@comment, post_id:post.id %>
           <hr>
         </div>
         <div class = "comments-container" id="comments-of-<%=post.id%>">
