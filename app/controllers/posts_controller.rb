@@ -41,12 +41,21 @@ class PostsController < ApplicationController
 
   def move_to_trash
     SafeDelete.new(@post).call
-    redirect_to posts_path
+    @modal_action = "close"
+    @posts = Post.where(thrashed:false)
+    respond_to do |format|
+      format.js{render 'posts/update_post_listing'}
+    end
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path
+    @modal_action = "close"
+    @post.destroy!
+    @posts = Post.where(thrashed:false)
+    respond_to do |format|
+      format.js {render 'posts/update_post_listing'}
+    end
+
   end
 
   private

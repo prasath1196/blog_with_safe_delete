@@ -12,12 +12,18 @@ class CommentsController < ApplicationController
 
   def move_to_trash
     SafeDelete.new(@comment).call
-    redirect_to posts_path
+    @modal_action = "close"
+    respond_to do |format|
+      format.js {render 'update_comment_listing'}
+    end
   end
 
   def destroy
     @comment.destroy
-    redirect_to posts_path
+    @modal_action = "close"
+    respond_to do |format|
+      format.js {render 'update_comment_listing'}
+    end
   end
 
   def edit
